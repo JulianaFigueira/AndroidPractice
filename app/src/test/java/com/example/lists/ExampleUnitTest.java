@@ -28,4 +28,12 @@ public class ExampleUnitTest {
         assertFalse(StringUtils.CheckJumbledLetter("moon", "nmoo"));
         assertFalse(StringUtils.CheckJumbledLetter("misspellings", "mpeissngslli"));
     }
+
+    @Test
+    public void CheckTypos_Test3() {
+        assertTrue(StringUtils.CheckTypos("pale", "ple"));
+        assertTrue(StringUtils.CheckTypos("pales", "pale"));
+        assertTrue(StringUtils.CheckTypos("pale", "bale"));
+        assertFalse(StringUtils.CheckTypos("pale", "bake"));
+    }
 }

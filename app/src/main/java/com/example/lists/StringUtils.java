@@ -73,4 +73,49 @@ public class StringUtils {
         }
         return res;
     }
+
+    /*
+    * Check word with typo:   
+    * Input
+    *   two strings
+    * Output
+    *   if they are one typo (or zero typos) away [?]
+    *       There are three types of typos:
+    *           - insert a character
+    *           - remove a character
+    *           - replace a character
+    * Ju's assumption 1: check if they have any kind of typos
+    * Ju's Assumption 2: if they are the same size but have more than one different character
+    *                       can't say if it's a typo, it could be another word  maybe. . .
+    * */
+    public static boolean CheckTypos(String str1, String str2) {
+        boolean res = false;
+
+        if (str1.equals(str2)) {
+            res = false; //same word, no typo
+        } else {
+            int length = str1.length();
+
+            if (length - str2.length() != 0) {
+                res = true; //different sizes, has typo
+            } else {
+                //same size && does not have the same letters
+                //is another word?
+                int diffLetters = 0;
+
+                //find diff letters
+                for (int i = 0; i < length; i++) {
+                    if(str1.charAt(i) != str2.charAt(i)) {
+                        diffLetters++;
+                    }
+                }
+
+                if (diffLetters == 1) {
+                    res = true;
+                }
+                //otherwise may be another word
+            }
+        }
+        return res;
+    }
 }
