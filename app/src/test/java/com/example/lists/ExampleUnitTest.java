@@ -11,13 +11,21 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void ReplaceSpace_Test1()
-    {
+    public void ReplaceSpace_Test1() {
         char[] testStr = "User is not allowed      ".toCharArray();
         char[] corrStr = "User&32is&32not&32allowed".toCharArray();
 
         StringUtils.ReplaceSpace(testStr, 19);
 
         assertArrayEquals(testStr, corrStr);
+    }
+
+    @Test
+    public void CheckJumbledLetter_Test2() {
+        assertTrue(StringUtils.CheckJumbledLetter("you", "yuo"));
+        assertTrue(StringUtils.CheckJumbledLetter("probably", "porbalby"));
+        assertTrue(StringUtils.CheckJumbledLetter("despite", "desptie"));
+        assertFalse(StringUtils.CheckJumbledLetter("moon", "nmoo"));
+        assertFalse(StringUtils.CheckJumbledLetter("misspellings", "mpeissngslli"));
     }
 }
