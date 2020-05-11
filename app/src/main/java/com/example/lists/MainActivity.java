@@ -21,7 +21,6 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     private MenuItem searchMenuItem;
     private ArrayAdapter<String> strList;
     private StringListFilter strFilter;
-    private ListView stringListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     private void initStringList() {
         strFilter = new StringListFilter();
         strList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strFilter.FilteredWordList);
-        stringListView = (ListView) findViewById(R.id.string_list);
+        ListView stringListView = (ListView) findViewById(R.id.string_list);
         stringListView.setAdapter(strList);
     }
 

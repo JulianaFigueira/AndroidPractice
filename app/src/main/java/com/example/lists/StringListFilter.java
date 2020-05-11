@@ -190,7 +190,7 @@ public class StringListFilter extends Filter{
 
         //filter
         for (String word : WordList) {
-            if (word.equals(search) ||
+            if (word.contains(search) ||
                     (CheckJumbledLetter(word, search) ^ HasTypos(word, search))) {
                 tempList.add(word);
             }

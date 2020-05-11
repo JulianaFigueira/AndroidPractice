@@ -50,6 +50,28 @@ public class ExampleUnitTest {
         StringListFilter.ApplyFilterToList ("desptie", resultList);
         assertTrue(resultList.size() == 1);
         assertTrue(((String)resultList.get(0)).equals("despite"));
+    }
 
+    @Test
+    public void RemoveDuplicatedEmails_Test5() {
+        EmailThread emails = new EmailThread();
+
+        emails.pushMessage(new EmailThread.EmailMesage("1"));
+        emails.pushMessage(new EmailThread.EmailMesage("2"));
+        emails.pushMessage(new EmailThread.EmailMesage("1"));
+        emails.pushMessage(new EmailThread.EmailMesage("3"));
+        emails.pushMessage(new EmailThread.EmailMesage("2"));
+        emails.pushMessage(new EmailThread.EmailMesage("1"));
+
+        assertTrue(EmailThread.RemoveDuplicatedMessages(emails) == 3);
+
+        EmailThread.EmailMesage head = emails.peekMessage();
+        assertTrue(head.message.equals("1"));
+
+        head = head.getNextMsg();
+        assertTrue(head.message.equals("2"));
+
+        head = head.getNextMsg();
+        assertTrue(head.message.equals("3"));
     }
 }
