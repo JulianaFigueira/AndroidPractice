@@ -2,6 +2,8 @@ package com.example.lists;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 /**
@@ -15,25 +17,39 @@ public class ExampleUnitTest {
         char[] testStr = "User is not allowed      ".toCharArray();
         char[] corrStr = "User&32is&32not&32allowed".toCharArray();
 
-        StringUtils.ReplaceSpace(testStr, 19);
+        StringListFilter.ReplaceSpace(testStr, 19);
 
         assertArrayEquals(testStr, corrStr);
     }
 
     @Test
     public void CheckJumbledLetter_Test2() {
-        assertTrue(StringUtils.CheckJumbledLetter("you", "yuo"));
-        assertTrue(StringUtils.CheckJumbledLetter("probably", "porbalby"));
-        assertTrue(StringUtils.CheckJumbledLetter("despite", "desptie"));
-        assertFalse(StringUtils.CheckJumbledLetter("moon", "nmoo"));
-        assertFalse(StringUtils.CheckJumbledLetter("misspellings", "mpeissngslli"));
+        assertTrue(StringListFilter.CheckJumbledLetter("you", "yuo"));
+        assertTrue(StringListFilter.CheckJumbledLetter("probably", "porbalby"));
+        assertTrue(StringListFilter.CheckJumbledLetter("despite", "desptie"));
+        assertFalse(StringListFilter.CheckJumbledLetter("moon", "nmoo"));
+        assertFalse(StringListFilter.CheckJumbledLetter("misspellings", "mpeissngslli"));
     }
 
     @Test
-    public void CheckTypos_Test3() {
-        assertTrue(StringUtils.CheckTypos("pale", "ple"));
-        assertTrue(StringUtils.CheckTypos("pales", "pale"));
-        assertTrue(StringUtils.CheckTypos("pale", "bale"));
-        assertFalse(StringUtils.CheckTypos("pale", "bake"));
+    public void HasTypos_Test3() {
+        assertTrue(StringListFilter.HasTypos("pale", "ple"));
+        assertTrue(StringListFilter.HasTypos("pales", "pale"));
+        assertTrue(StringListFilter.HasTypos("pale", "bale"));
+        assertFalse(StringListFilter.HasTypos("pale", "bake"));
+    }
+
+    @Test
+    public void FilterWordList_Test4() {
+        ArrayList<String> resultList = new ArrayList<String>();
+
+        StringListFilter.ApplyFilterToList ("ple", resultList);
+        assertTrue(resultList.size() == 1);
+        assertTrue(((String)resultList.get(0)).equals("pale"));
+
+        StringListFilter.ApplyFilterToList ("desptie", resultList);
+        assertTrue(resultList.size() == 1);
+        assertTrue(((String)resultList.get(0)).equals("despite"));
+
     }
 }
