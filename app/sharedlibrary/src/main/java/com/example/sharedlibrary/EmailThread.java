@@ -18,6 +18,9 @@ public class EmailThread {
     }
 
     private EmailMesage head = null;
+    private int count;
+
+    public int getCount() { return count; }
 
     public EmailMesage peekMessage() {
         return  head;
@@ -27,15 +30,28 @@ public class EmailThread {
         if(em != null) {
             if (head == null) {
                 head = em;
+                count = countTail(em);
             } else {
                 em.nextMsg = head;
                 head = em;
+                count++;
             }
         }
     }
 
     private void removeMessage (EmailMesage prevMsg, EmailMesage discardedMsg) {
         prevMsg.nextMsg = discardedMsg.nextMsg;
+        count--;
+    }
+
+    public static int countTail(EmailMesage head) {
+        EmailMesage h = head;
+        int i = 0;
+        while (h != null) {
+            i++;
+            h = h.nextMsg;
+        }
+        return i;
     }
 
     /* 
