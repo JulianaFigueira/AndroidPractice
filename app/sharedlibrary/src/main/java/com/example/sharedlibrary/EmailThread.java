@@ -55,7 +55,7 @@ public class EmailThread {
     }
 
     /* 
-    * Remove duplicates on email thread
+    * Remove duplicates on email thread:  O(n) w/ access to hash table being constant O(1)
     * Input
     *   email thread : singly unsorted linked list of messages
     * Output
@@ -83,39 +83,48 @@ public class EmailThread {
     }
 
     /*
-    *  Linked List Intersection
+    *  Linked List Intersection: O(n)
     * Input   
     *   two singly linked lists
     * Output
     *   return the intersecting node between the two lists (if exists). 
     *   + the intersection is defined by reference, not value
     * Ju's assumption: the lists have no loops (duplicate), and they join towards the end
+    *
+    *
     * */
     public static EmailMesage IntersectionMessage(EmailThread emails1, EmailThread emails2) {
         EmailMesage res = null;
+        int diff = Math.abs(emails1.count-emails2.count);
 
-        HashSet<EmailMesage> emSet = new HashSet<EmailMesage>();
-        EmailMesage head = emails1.head;
+        EmailMesage curr1 = emails1.head;
+        EmailMesage curr2 = emails2.head;
 
-        //Store first list
-        while (head != null) {
-            emSet.add(head);
-            head = head.nextMsg;
+        //even starting point
+        if(emails1.count > emails2.count)
+        {
+            curr1 = traverseNodes(curr1, diff);
+        } else {
+            curr2 = traverseNodes(curr2, diff);
         }
 
-        //find duplicate on second list
-        head = emails2.head;
-
-        while (head != null) {
-            if (emSet.contains(head)) { //duplicate aka intersection
-                res = head;
-                break;
-            } else {
-                emSet.add(head);
+        //symmetric traverse until the equal node aka intersection
+        while (curr1 != null && curr2 != null) {
+            if (curr1 == curr2) {
+                return curr1;
             }
-            head = head.nextMsg;
+            curr1 = curr1.nextMsg;
+            curr2 = curr2.nextMsg;
         }
 
         return res;
+    }
+
+    private static EmailMesage traverseNodes(EmailMesage emails1, int diff) {
+        EmailMesage resp = emails1;
+        for(int i = 0; i < diff && resp != null; i++) {
+            resp = resp.nextMsg;
+        }
+        return resp;
     }
 }

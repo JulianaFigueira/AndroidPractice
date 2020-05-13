@@ -43,7 +43,7 @@ public class StringListFilter extends Filter{
     //complexity in time  and space
 
     /*
-    * Replacing characters in place:
+    * Replacing characters in place: O(n^2)
     * Input
     *       Array of characters
     * Output
@@ -73,7 +73,7 @@ public class StringListFilter extends Filter{
     }
 
     /*
-    * Check words with jumbled letters:
+    * Check words with jumbled letters: O(n)
     * Input
     *   Two strings: 'right word', 'input to check'
     * Output
@@ -112,7 +112,7 @@ public class StringListFilter extends Filter{
     }
 
     /*
-    * Check word with typo:   
+    * Check word with typo:   O(n)
     * Input
     *   two strings: 'right word', 'input to check'
     * Output
