@@ -55,7 +55,8 @@ public class EmailThread {
     }
 
     /* 
-    * Remove duplicates on email thread:  O(n) w/ access to hash table being constant O(1)
+    * Remove duplicates on email thread:  time O(n) w/ access to hash table being constant O(1),
+    *                                       space O(n) 'cause of hash table
     * Input
     *   email thread : singly unsorted linked list of messages
     * Output
@@ -83,7 +84,7 @@ public class EmailThread {
     }
 
     /*
-    *  Linked List Intersection: O(n)
+    *  Linked List Intersection: time O(n), space O(1)
     * Input   
     *   two singly linked lists
     * Output
