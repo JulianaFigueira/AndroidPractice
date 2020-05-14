@@ -73,7 +73,7 @@ public class StringListFilter extends Filter{
     }
 
     /*
-    * Check words with jumbled letters: O(n)
+    * Check words with jumbled letters: O(n^2) w/ string.indexOf being O(n)
     * Input
     *   Two strings: 'right word', 'input to check'
     * Output
@@ -112,7 +112,7 @@ public class StringListFilter extends Filter{
     }
 
     /*
-    * Check word with typo:   O(n)
+    * Check word with typo: O(n^2) with string.substring being O(n)
     * Input
     *   two strings: 'right word', 'input to check'
     * Output
