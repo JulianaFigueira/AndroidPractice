@@ -8,10 +8,10 @@ The unit test are on [test.sharedlibrary](app/sharedlibrary/src/test/java/com/ex
 1. Replacing characters in place: O(n^2)
     - ExampleUnitTest.ReplaceSpace_Test1
 
-2. Check words with jumbled letters: O(n)
+2. Check words with jumbled letters: O(n^2)
     - ExampleUnitTest.CheckJumbledLetter_Test2
 
-3. Check word with typo:   O(n)
+3. Check word with typo:   O(n^2)
     - ExampleUnitTest.HasTypos_Test3
   
 4. [Android] Search Box List
